@@ -8,7 +8,7 @@ const ListTeachers = () => {
 
     async function getTeachers(dataInfo) {
         try {
-            const resp = await fetch('http://51.15.114.199:3534/api/teacher-list/', {
+            const resp = await fetch('http://127.0.0.1:8000/api/teachers/teacher-list/', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${dataInfo.user.token}`

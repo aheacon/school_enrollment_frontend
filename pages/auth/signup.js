@@ -18,7 +18,7 @@ const Signup = () => {
             </Head>
             <div className="container mx-auto px-5 global w-full h-screen flex justify-center items-center">
                 <div className="w-[350px] h-[550px] p-5 border flex flex-col justify-evenly">
-                    <h1 className="text-xl font-semibold text-center">Srednja Škola</h1>
+                    <h1 className="text-xl font-semibold text-center">Srednja šŠkola</h1>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <label htmlFor="email" className="block text-sm font-bold mb-2 mt-4">Email</label>
                         <input

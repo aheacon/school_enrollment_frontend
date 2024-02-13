@@ -9,7 +9,7 @@ export const authOptions = {
       credentials: {},
       async authorize(credentials, req) {
         const { email, password } = credentials;
-        const res = await fetch("http://51.15.114.199:3534/api/login/", {
+        const res = await fetch("http://127.0.0.1:8000/api/teachers/login/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -26,7 +26,7 @@ export const authOptions = {
         let user = {};
 
         try {
-          const userResp = await fetch('http://51.15.114.199:3534/api/teacher/' + user_id + '/', {
+          const userResp = await fetch('http://127.0.0.1:8000/api/teachers/teacher/' + user_id + '/', {
             method: 'GET',
             headers: {
               'Authorization': `Bearer ${jwt}`

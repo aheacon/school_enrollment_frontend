@@ -11,7 +11,7 @@ const NewTeachers = ({setSelectedPage}) => {
 
     async function getSchool(dataInfo) {
         try {
-            const resp = await fetch('http://51.15.114.199:3534/api/school-list/' + dataInfo.user.school_id, {
+            const resp = await fetch('http://127.0.0.1:8000/api/sec-schools/school-list/' + dataInfo.user.school_id, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${dataInfo.user.token}`
@@ -22,7 +22,7 @@ const NewTeachers = ({setSelectedPage}) => {
             setSchool(schoolData)
             setValue("school_id", schoolData.id)
 
-            const respCourses = await fetch('http://51.15.114.199:3534/api/school-list/' + dataInfo.user.school_id + '/courses/', {
+            const respCourses = await fetch('http://127.0.0.1:8000/api/sec-schools/school-list/' + dataInfo.user.school_id + '/courses/', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${dataInfo.user.token}`
@@ -54,7 +54,7 @@ const NewTeachers = ({setSelectedPage}) => {
                 course_code: dataVal.course_id
             }
 
-            const store = await fetch('http://51.15.114.199:3534/api/teacher-create/', {
+            const store = await fetch('http://127.0.0.1:8000/api/teachers/teacher-create/', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${data.user.token}`,
