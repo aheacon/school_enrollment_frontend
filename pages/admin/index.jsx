@@ -2,6 +2,9 @@ import Layout from '../../src/components/layout/Layout';
 import Sidebar from '../../src/components/admin/sidebar';
 import ListTeachers from '../../src/components/admin/listTeachers';
 import NewTeacher from '../../src/components/admin/newTeacher';
+import DeleteTeacher from '../../src/components/admin/deleteTeacher';
+import UpdateTeacher from '../../src/components/admin/editTeacher';
+import ListCourses from '../../src/components/admin/listCourses';
 import { useEffect, useState } from 'react';
 
 const Admin = (props) => {
@@ -30,6 +33,10 @@ const Admin = (props) => {
         <div className="w-4/5">
           {selectedPage === "listTeachers" && <ListTeachers />}
           {selectedPage === "newTeacher" && <NewTeacher setSelectedPage={setSelectedPage} />}
+          {/* Added 3 new pages to the admin sidebar*/}
+          {selectedPage === "updateTeacher" && <UpdateTeacher setSelectedPage={setSelectedPage} />}
+          {selectedPage === "deleteTeacher" && <DeleteTeacher setSelectedPage={setSelectedPage} />}
+          {selectedPage === "listCourses" && <ListCourses setSelectedPage={setSelectedPage} />}
         </div>
       </div>
 
