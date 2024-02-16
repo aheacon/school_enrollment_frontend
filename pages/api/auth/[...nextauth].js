@@ -36,6 +36,11 @@ export const authOptions = {
         } catch (e) {
           console.log(e)
         }
+        // Here we are checking if the user is verified;
+        if(!user.is_verified) {
+          throw new Error('Korisnik nije verifikovan.');
+        }
+
         user.token = jwt;
         if(user.is_superuser){
           user.role = "admin"
