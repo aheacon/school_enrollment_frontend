@@ -1,40 +1,22 @@
 import { useEffect, useState } from 'react';
 import EditStudent from '../../../../src/components/user/editStudent';
 import { useRouter } from 'next/router';
-import StudentGrades from '../../../../src/components/user/studentGrades'
 import GradePage from '../../../../src/components/user/gradePage';
 import { ChevronLeftIcon } from '@heroicons/react/24/outline';
+import StudentAcknowledgments from '../../../../src/components/user/studentAcknowledgments'
 
 
 const EditPage = (props) => {
-    const [selectedTab, setSelectedTab] = useState("editStudent");
     const router = useRouter();
     const { id } = router.query;
     const idExists = id !== undefined && id !== null;
-
-    const determineGradeFromTab = (tab) => {
-        switch (tab) {
-            case "sixthGrade":
-                return "VI";
-            case "seventhGrade":
-                return "VII";
-            case "eightGrade":
-                return "VIII";
-            case "ninthGrade":
-                return "IX";
-            default:
-                return "";
-        }
-    };
-
-    // Get the grade based on the selected tab;
-    const grade = determineGradeFromTab(selectedTab);
+    const [selectedTab, setSelectedTab] = useState("editStudent");
 
     // Function to switch tabs;
     const handleTabNavigation = (e, tab) => {
         if (e.key === "Tab") {
             e.preventDefault();
-            const tabs = ["editStudent", "sixthGrade", "seventhGrade", "eightGrade", "ninthGrade", "studentGrades"];
+            const tabs = ["editStudent", "sixthGrade", "seventhGrade", "eightGrade", "ninthGrade", "studentAcknowledgments"];
             const currentIndex = tabs.indexOf(selectedTab);
             let nextIndex = currentIndex + 1;
             if (nextIndex >= tabs.length) {
@@ -86,11 +68,11 @@ const EditPage = (props) => {
                                 onKeyDown={(e) => handleTabNavigation(e, "ninthGrade")}
                             >Deveti razred</button>
                             <button
-                                tabIndex={selectedTab === "studentGrades" ? "0" : "-1"}
-                                className={`focus:outline-none text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium ${selectedTab === "studentGrades" ? "bg-gray-900" : ""}`}
-                                onClick={() => setSelectedTab("studentGrades")}
-                                onKeyDown={(e) => handleTabNavigation(e, "studentGrades")}
-                            >Ocjene</button>
+                                tabIndex={selectedTab === "studentAcknowledgments" ? "0" : "-1"}
+                                className={`focus:outline-none text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium ${selectedTab === "studentAcknowledgments" ? "bg-gray-900" : ""}`}
+                                onClick={() => setSelectedTab("studentAcknowledgments")}
+                                onKeyDown={(e) => handleTabNavigation(e, "studentAcknowledgments")}
+                            >Priznanja</button>
                         </div>
                         <div className="flex items-center">
                             <button
@@ -104,15 +86,14 @@ const EditPage = (props) => {
             </div>
             <div>
                 {selectedTab === "editStudent" && idExists && <EditStudent studentId={id} />}
-                {selectedTab === "sixthGrade" && idExists && <GradePage studentId={id} setSelectedPage={setSelectedTab} grade={grade} />}
-                {selectedTab === "seventhGrade" && idExists && <GradePage studentId={id} setSelectedPage={setSelectedTab} grade={grade} />}
-                {selectedTab === "eightGrade" && idExists && <GradePage studentId={id} setSelectedPage={setSelectedTab} grade={grade} />}
-                {selectedTab === "ninthGrade" && idExists && <GradePage studentId={id} setSelectedPage={setSelectedTab} grade={grade} />}
-                {selectedTab === "studentGrades" && idExists && <StudentGrades studentId={id} setSelectedPage={setSelectedTab} />}
+                {selectedTab === "sixthGrade" && idExists && <GradePage studentId={id} setSelectedPage={setSelectedTab} selectedTab={selectedTab} />}
+                {selectedTab === "seventhGrade" && idExists && <GradePage studentId={id} setSelectedPage={setSelectedTab} selectedTab={selectedTab} />}
+                {selectedTab === "eightGrade" && idExists && <GradePage studentId={id} setSelectedPage={setSelectedTab} selectedTab={selectedTab} />}
+                {selectedTab === "ninthGrade" && idExists && <GradePage studentId={id} setSelectedPage={setSelectedTab} selectedTab={selectedTab} />}
+                {selectedTab === "studentAcknowledgments" && idExists && <StudentAcknowledgments studentId={id} setSelectedPage={setSelectedTab} />}
             </div>
         </div>
     );
-
 };
 
 export default EditPage;

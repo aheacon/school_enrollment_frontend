@@ -256,7 +256,6 @@ const NewStudents = ({ setSelectedPage }) => {
             className="border rounded w-full py-2 px-3"
             {...register("case", { required: "Polje je obavezno!" })}
           >
-            <option value="">Odaberite</option>
             <option value="Regular student">Regular student</option>
             <option value="Invaliditet">Invaliditet</option>
             <option value="Ostali">Ostali</option>
